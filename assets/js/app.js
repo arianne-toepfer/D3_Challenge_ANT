@@ -81,6 +81,9 @@ d3.csv("assets/data/data.csv").then(function(newsData) {
     var toolTip = d3.tip()
       .attr("class", "tooltip")
       .offset([80, -60])
+      .style("background-color", "lightgrey")
+      .style("border-width", "1px")
+      .style("padding", "5px")
       .html(function(d) {
         return (`${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}`);
       });
@@ -92,10 +95,16 @@ d3.csv("assets/data/data.csv").then(function(newsData) {
     // Create event listeners to display and hide the tooltip
     // ==============================
     circlesGroup.on("mouseover", function(data) {
+      d3.select(this)
+      .transition()
+      .duration(500)
       toolTip.show(data, this);
     })
     // onmouseout event
       .on("mouseout", function(data, index) {
+        d3.select(this)
+        .transition()
+        .duration(500)
         toolTip.hide(data);
       });
 
@@ -112,6 +121,7 @@ d3.csv("assets/data/data.csv").then(function(newsData) {
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
       .text("Poverty (%)");
+
   }).catch(function(error) {
     console.log(error);
 });
