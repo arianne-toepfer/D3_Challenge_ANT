@@ -64,17 +64,15 @@ d3.csv("assets/data/data.csv").then(function(newsData) {
     .attr("r", "10")
     .attr("fill", "blue")
     .attr("opacity", ".5");
-    // Create Text
-    // ==============================
-    // var circlesGroup = chartGroup.selectAll("circle")
-    // .data(newsData)
-    // .enter()
-    // .append("text")
-    // .attr("cx", d => xLinearScale(d.poverty))
-    // .attr("cy", d => yLinearScale(d.healthcare))
-    // .attr("r", "10")
-    // .attr("fill", "blue")
-    // .attr("opacity", ".5");
+
+    circlesGroup.selectAll("circle")
+    .append("text").text(function(t){
+      return t.abbr;
+    })
+    .attr("dx", d => xLinearScale(d.poverty))
+    .attr("dy", d => yLinearScale(d.healthcare))
+    ;
+    
 
     // Initialize tool tip
     // ==============================
@@ -85,7 +83,7 @@ d3.csv("assets/data/data.csv").then(function(newsData) {
       .style("border-width", "1px")
       .style("padding", "5px")
       .html(function(d) {
-        return (`${d.state}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}`);
+        return (`${d.state}<br>Poverty: ${d.poverty} % <br>Healthcare: ${d.healthcare} %`);
       });
 
     //  Create tooltip in the chart
