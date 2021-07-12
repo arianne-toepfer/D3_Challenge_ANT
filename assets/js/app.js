@@ -66,12 +66,12 @@ function makeResponsive(){
       .attr("fill", "blue")
       .attr("opacity", ".5");
       //Create Text inside the circles
-      circlesGroup.selectAll("circle")
-      .append("text").text(function(t){
-        return t.abbr;
+      
+      circlesGroup.append("text").text(function(d){
+        return d.abbr;
       })
-      .attr("dx", d => xLinearScale(d.poverty))
-      .attr("dy", d => yLinearScale(d.healthcare))
+      .attr("x", d => xLinearScale(d.poverty))
+      .attr("y", d => yLinearScale(d.healthcare))
       ;
       
 
@@ -125,7 +125,6 @@ function makeResponsive(){
       console.log(error);
   });
 }
-makeResponsive();
 
 //When the browser window is resized, call makeResponsive
 d3.select(window).on("resize", makeResponsive());
