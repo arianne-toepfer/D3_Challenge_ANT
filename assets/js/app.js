@@ -64,14 +64,21 @@ function makeResponsive(){
       .attr("cy", d => yLinearScale(d.healthcare))
       .attr("r", "10")
       .attr("fill", "blue")
-      .attr("opacity", ".5");
+      .attr("opacity", ".5")
+      .classed("Circles", true);
+
       //Create Text inside the circles
-      circlesGroup.append("text")
+      chartGroup.selectAll("text")
+      .data(newsData)
+      .enter()
+      .append("text")
       .text(function(d){
         return d.abbr
       })
-      .attr("x", d => xLinearScale(d.poverty))
-      .attr("y", d => yLinearScale(d.healthcare));
+      .attr("class", "StateAbbr")
+      .attr("dx", d => xLinearScale(d.poverty))
+      .attr("dy", d => yLinearScale(d.healthcare) +5)
+      .attr("font-size", "6px");
       
       // Initialize tool tip
       // ==============================
