@@ -66,27 +66,25 @@ function makeResponsive(){
       .attr("fill", "blue")
       .attr("opacity", ".5");
       //Create Text inside the circles
-      
-      circlesGroup.append("text").text(function(d){
-        return d.abbr;
+      circlesGroup.append("text")
+      .text(function(d){
+        return d.abbr
       })
       .attr("x", d => xLinearScale(d.poverty))
-      .attr("y", d => yLinearScale(d.healthcare))
-      ;
+      .attr("y", d => yLinearScale(d.healthcare));
       
-
       // Initialize tool tip
       // ==============================
       var toolTip = d3.tip()
-        .attr("class", "tooltip")
-        .offset([80, -60])
-        .style("background-color", "lightgrey")
-        .style("border-width", "1px")
-        .style("padding", "5px")
-        .html(function(d) {
-          return (`${d.state}<br>Poverty: ${d.poverty} % <br>Healthcare: ${d.healthcare} %`);
-        });
-
+      .attr("class", "tooltip")
+      .offset([80, -60])
+      .style("background-color", "lightgrey")
+      .style("border-width", "1px")
+      .style("padding", "5px")
+      .html(function(d) {
+        return (`${d.state}<br>Poverty: ${d.poverty} % <br>Healthcare: ${d.healthcare} %`);
+      });
+      
       //  Create tooltip in the chart
       // ==============================
       chartGroup.call(toolTip);
