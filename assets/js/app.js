@@ -68,7 +68,8 @@ function makeResponsive(){
       .classed("Circles", true);
 
       //Create Text inside the circles
-      chartGroup.selectAll("text")
+      svg.append("g")
+      .selectAll("circle")
       .data(newsData)
       .enter()
       .append("text")
@@ -76,6 +77,7 @@ function makeResponsive(){
         return d.abbr
       })
       .attr("class", "StateAbbr")
+      .attr("transform", `translate(${margin.left}, ${margin.top})`)
       .attr("dx", d => xLinearScale(d.poverty))
       .attr("dy", d => yLinearScale(d.healthcare) +5)
       .attr("font-size", "6px");
